@@ -13,8 +13,6 @@ services:
     networks:
       my-network:
         ipv4_address: 172.20.0.2
-    # volumes:
-    #   - ./sql_scripts:/docker-entrypoint-initdb.d
 
   jupyterlab:
     build: .
@@ -31,6 +29,3 @@ networks:
       driver: default
       config:
         - subnet: 172.20.0.0/16
-
-# volumes:
-#   sqlserver-data:

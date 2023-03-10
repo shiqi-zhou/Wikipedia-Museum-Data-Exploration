@@ -30,36 +30,3 @@ COPY . /src
 RUN pip3 install -r requirements.txt
 
 CMD ["jupyter-lab","--ip=0.0.0.0","--no-browser","--allow-root"]
-### conda ###
-
-### image:3 ### 
-
-# FROM python:3.9.1
-# # FROM python:3.7-slim
-# # FROM python:3.6-stretch
-
-# # install build utilities
-# RUN apt update \
-#     && apt install -y python3-dev unixodbc-dev \
-#     && rm -rf /var/lib/apt/lists/*
-
-# # check our python environment
-# RUN python3 --version
-# RUN pip3 --version
-
-# RUN pip install --upgrade pip \
-#     && pip install unidecode \
-#     && pip install sqlalchemy
-
-# # install python dependencies
-# COPY requirements.txt .
-# RUN pip3 install -r requirements.txt
-
-# COPY . src/
-# RUN cd src/ \
-#     && ls -la /src/*
-
-# # running Python Application
-# CMD ["python3", "src/museum_assignment.py"]
-
-### image:3 ### 

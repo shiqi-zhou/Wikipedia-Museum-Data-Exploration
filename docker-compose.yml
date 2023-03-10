@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Database2023
+      - MSSQL_PID=Developer
+      - 'MSSQL_COMMAND=CREATE DATABASE WorldMuseumsDB'
+    ports:
+      - "1433:1433"
+    networks:
+      my-network:
+        ipv4_address: 172.20.0.2
+    # volumes:
+    #   - ./sql_scripts:/docker-entrypoint-initdb.d
+
+  jupyterlab:
+    build: .
+    ports:
+      - "8888:8888"
+    depends_on:
+      - sqlserver
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/16
+
+# volumes:
+#   sqlserver-data:
